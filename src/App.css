@@ -1,0 +1,23 @@
+.AppTitle {
+  text-align: center;
+  font-weight: bolder;
+  color: #ededed;
+  font-size: 2em;
+}
+
+.TitleMessage {
+  text-align: center;
+  font-style: italic;
+  font-size: 1em;
+  color: #ededed;
+  padding-bottom: 10px;
+}
+
+.Logo {
+  margin: 20px auto;
+  background: rgba(66, 66, 66, 0.8);
+}
+
+.App {
+  text-align: center;
+}
