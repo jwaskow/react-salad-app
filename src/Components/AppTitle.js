@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class AppTitle extends Component {
   render() {
-    console.log(this);
     return (
       <div className="Logo">
       <div className="AppTitle">{this.props.appTitle}</div>

@@ -8,7 +8,8 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      vinegars: []
+      vinegars: [],
+      recipe: {}
     }
   }
 
@@ -47,11 +48,15 @@ class App extends Component {
       });
     }
 
+handleNewRecipe(newRecipe){
+  console.log(newRecipe);
+}
+
   render() {
     return (
       <div className="App">
         <AppTitle appTitle={this.state.appTitle} titleMessage={this.state.titleMessage}/>
-        <Ingredients vinegars={this.state.vinegars} oils={this.state.oils} aromatics={this.state.aromatics}/>
+        <Ingredients newRecipe={this.handleNewRecipe.bind(this)} vinegars={this.state.vinegars} oils={this.state.oils} aromatics={this.state.aromatics}/>
       </div>
     );
   }
