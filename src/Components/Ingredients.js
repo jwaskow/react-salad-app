@@ -1,12 +1,34 @@
 import React, { Component } from 'react';
 import Aromatic from './Aromatic';
 
+function Recipe(props) {
+  const showRecipe = props.showRecipe
+  console.log(showRecipe);
+  if (!props.showRecipe) {
+    return null;
+  }
+  return (
+    <div>
+      1.  Add a teaspoon of Dijon Mustard to the cup of an immersion blender. {"\n"}
+      2.  Add the {this.state.vinegar} vinegar to the cup. {"\n"}
+      3.  Add the' + aromaticString + ' to the {this.state.vinegar} vinegar and mustard. {"\n"}
+      4.  While blending, begin slowly pouring the {this.state.oil} oil into the mixture.
+      Once a stable emulsion forms, slightly increase the speed of pouring the {this.state.oil} oil. {"\n"}
+      5.  When all of the oil is blended, season to taste with salt and pepper and mix.  Vinaigrette will hold its emulsion for about 2 weeks.
+    </div>
+  )
+}
+
 class Ingredients extends Component {
   constructor(){
     super();
     this.state = {
-      newRecipe:{}
+      vinegar: '',
+      oil: '',
+      showRecipe: false
     }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   static defaultProps = {
@@ -15,15 +37,19 @@ class Ingredients extends Component {
   }
 
   handleSubmit(e){
-    this.setState({newRecipe:{
-      vinegar: this.refs.vinegar.value,
-      oil: this.refs.oil.value
-    }}, function(){
+    // this.setState({showRecipe: true})
+    this.setState({[e.target.name]: e.target.value}, function () {
       console.log(this.state);
-      this.props.newRecipe(this.state.newRecipe);
     })
     e.preventDefault()
   }
+
+  handleChange(e) {
+    this.setState({[e.target.name]: e.target.value}, function () {
+      console.log(this.state);
+    })
+  }
+
 
   render() {
     let vinegars;
@@ -48,14 +74,14 @@ class Ingredients extends Component {
           <div>
             <label>Choose a Vinegar</label>
             <br />
-            <select ref="vinegar">
+            <select name="vinegar" ref="vinegar" onChange={this.handleChange}>
               {vinegarOptions}
             </select>
           </div>
           <div>
             <label>Choose an Oil</label>
             <br />
-            <select ref="oil">
+            <select name="oil" ref="oil" onChange={this.handleChange}>
               {oilOptions}
             </select>
           </div>
@@ -63,6 +89,14 @@ class Ingredients extends Component {
           <h4>Choose Aromatics</h4>
           <div>{aromatics}</div>
         </form>
+        <div>
+          1.  Add a teaspoon of Dijon Mustard to the cup of an immersion blender. {"\n"}
+          2.  Add the {this.state.vinegar} vinegar to the cup. {"\n"}
+          3.  Add the' + aromaticString + ' to the {this.state.vinegar} vinegar and mustard. {"\n"}
+          4.  While blending, begin slowly pouring the {this.state.oil} oil into the mixture.
+          Once a stable emulsion forms, slightly increase the speed of pouring the {this.state.oil} oil. {"\n"}
+          5.  When all of the oil is blended, season to taste with salt and pepper and mix.  Vinaigrette will hold its emulsion for about 2 weeks.
+        </div>
     </div>
     );
   }
